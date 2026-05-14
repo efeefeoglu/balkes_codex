@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balkes Maket — Handcrafted Model Art</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-0: oklch(0.95 0.012 76);
+        --bg-1: oklch(0.91 0.015 76);
+        --bg-2: oklch(0.87 0.017 76);
+        --ink-0: oklch(0.23 0.02 68);
+        --ink-1: oklch(0.36 0.018 70);
+        --accent: oklch(0.57 0.09 62);
+        --accent-soft: oklch(0.74 0.04 64);
+        --line: oklch(0.73 0.012 75);
+        --radius-xl: 2rem;
+        --pad: 0.625rem;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-0: oklch(0.17 0.012 76);
+          --bg-1: oklch(0.21 0.014 76);
+          --bg-2: oklch(0.26 0.016 76);
+          --ink-0: oklch(0.91 0.015 72);
+          --ink-1: oklch(0.76 0.015 72);
+          --accent: oklch(0.73 0.07 67);
+          --accent-soft: oklch(0.38 0.04 66);
+          --line: oklch(0.34 0.012 75);
+        }
+        p { line-height: 1.8; letter-spacing: 0.01em; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 88% 12%, oklch(0.92 0.03 75), transparent 40%), var(--bg-0);
+        color: var(--ink-0);
+        font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+      }
+      .wrap { width: min(1160px, 92vw); margin-inline: auto; }
+      header { padding: 2rem 0 1rem; }
+      .topbar {
+        display: flex; justify-content: space-between; align-items: baseline; gap: 2rem;
+        padding: 1rem 1.25rem;
+      }
+      .logo { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 4vw, 3.6rem); letter-spacing: -0.02em; margin: 0; font-weight: 700; }
+      .tag { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem; color: var(--ink-1); }
+      nav ul { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+      nav a {
+        display: inline-block; text-decoration: none; color: var(--ink-0);
+        background: var(--bg-1); border: 1px solid var(--line); border-radius: 999px;
+        padding: 0.65rem 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.11em;
+        transition: transform .24s ease-out, background .24s ease-out;
+      }
+      nav a:hover { background: var(--bg-2); transform: translateY(-2px); }
+      nav a:active { transform: scale(0.97); }
+
+      section { padding: 7rem 0; }
+      .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 2.2rem; align-items: end; }
+      .hero h2 { font-size: clamp(2.2rem, 6vw, 6.4rem); margin: 0; line-height: .95; letter-spacing: -0.02em; font-weight: 800; max-width: 12ch; }
+      .hero p { max-width: 70ch; color: var(--ink-1); font-size: 1.08rem; }
+      .hero-media { margin-left: 8%; }
+      .bezel {
+        background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius-xl); padding: var(--pad);
+      }
+      .bezel > div {
+        border-radius: calc(var(--radius-xl) - var(--pad)); overflow: hidden; background: var(--bg-2);
+      }
+      img { width: 100%; display: block; object-fit: cover; }
+
+      .section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2.2rem; }
+      .section-head h3 { margin: 0; font-size: clamp(1.7rem, 3.6vw, 3.2rem); letter-spacing: -0.015em; }
+      .section-head span { font-size: .72rem; text-transform: uppercase; letter-spacing: .16em; color: var(--ink-1); }
+      .works {
+        display: grid; grid-template-columns: 1.1fr 0.9fr 1fr; grid-auto-rows: 11rem; gap: 1.25rem; grid-auto-flow: dense;
+      }
+      .work { text-decoration: none; color: inherit; transition: transform .28s ease-out, opacity .28s ease-out; }
+      .work:active { transform: scale(0.97); }
+      .work:hover { transform: translateY(-4px); }
+      .work:nth-child(1){ grid-row: span 2; }
+      .work:nth-child(3){ grid-row: span 2; }
+      .work:nth-child(4){ grid-column: span 2; }
+      .work figcaption { padding: .95rem .5rem .2rem; font-size: .92rem; color: var(--ink-1); }
+
+      .stages { display: grid; grid-template-columns: .8fr 1.2fr; gap: 2rem; }
+      .timeline { margin: 0; padding: 0; list-style: none; }
+      .timeline li { margin-bottom: 1.5rem; }
+      .timeline strong { display: block; font-size: 1.1rem; margin-bottom: .35rem; }
+      .about { display: grid; grid-template-columns: .95fr 1.05fr; gap: 2.5rem; align-items: center; }
+      .about p { max-width: 72ch; color: var(--ink-1); }
+      .btn {
+        display: inline-block; background: var(--accent); color: oklch(0.98 0.002 70); text-decoration: none;
+        padding: .92rem 1.3rem; border-radius: 999px; letter-spacing: .08em; text-transform: uppercase;
+        font-size: .78rem; font-weight: 600; transition: transform .22s ease-out, opacity .22s ease-out;
+      }
+      .btn:hover { opacity: .92; transform: translateY(-2px); }
+      .btn:active { transform: scale(0.97); }
+      footer { padding: 4rem 0 5rem; color: var(--ink-1); font-size: .9rem; }
+      @media (max-width: 900px) {
+        .hero, .stages, .about { grid-template-columns: 1fr; }
+        .hero-media { margin-left: 0; }
+        .works { grid-template-columns: 1fr 1fr; grid-auto-rows: 9rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="wrap">
+      <div class="topbar">
+        <h1 class="logo">Balkes Maket</h1>
+        <span class="tag">Wood • Miniature • Craft Studio</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#featured">Featured Works</a></li>
+          <li><a href="#stages">Production Stages</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <div>
+          <p class="tag">Personal workshop portfolio</p>
+          <h2>Handmade miniatures with soul, grain, and patience.</h2>
+          <p>I create ship models, workshop scenes, and object miniatures with real wood texture and mechanical detail. The presentation here is crafted to honor each piece, even when photos were captured in everyday conditions.</p>
+          <a class="btn" href="#featured">Explore Collection</a>
+        </div>
+        <div class="hero-media bezel">
+          <div><img src="https://balkesmaket.com/images/index/atolye.jpg" alt="Workshop model interior"></div>
+        </div>
+      </section>
+
+      <section id="featured">
+        <div class="section-head"><h3>Featured Works</h3><span>Curated highlights</span></div>
+        <div class="works">
+          <a class="work bezel" href="#"><div><img src="https://balkesmaket.com/images/index/muzikaletleri.jpg" alt="Miniature musical instruments"></div><figcaption>Musical Instruments Collection</figcaption></a>
+          <a class="work bezel" href="#"><div><img src="https://balkesmaket.com/images/index/fayton.jpg" alt="Horse carriage miniature"></div><figcaption>Ottoman Carriage</figcaption></a>
+          <a class="work bezel" href="#"><div><img src="https://balkesmaket.com/images/index/balikci.jpg" alt="Fishing boat model"></div><figcaption>Aynakıc Fishing Vessel</figcaption></a>
+          <a class="work bezel" href="#"><div><img src="https://balkesmaket.com/images/index/tepsi.jpg" alt="Mini table saw"></div><figcaption>Micro Table Saw Prototype</figcaption></a>
+        </div>
+      </section>
+
+      <section id="stages" class="stages">
+        <div class="section-head" style="display:block"><span>From sketch to varnish</span><h3>Production Stages</h3></div>
+        <div class="bezel">
+          <div style="padding:1.6rem 1.5rem;">
+            <ol class="timeline">
+              <li><strong>01 — Material Selection</strong>Grain direction, density, and finishing behavior are tested before any cut.</li>
+              <li><strong>02 — Precision Framing</strong>Primary structure is dry-fitted and corrected under magnified inspection.</li>
+              <li><strong>03 — Surface Character</strong>Micro-sanding and stain layering build realistic age and depth.</li>
+              <li><strong>04 — Final Assembly</strong>Lighting, accessories, and protective coating complete the narrative scene.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="bezel"><div><img src="https://balkesmaket.com/images/index/atolyedisi.jpg" alt="Workshop exterior"></div></div>
+        <div>
+          <p class="tag">About the maker</p>
+          <h3 style="font-size:clamp(1.8rem,4vw,4rem);letter-spacing:-0.02em;margin:.2rem 0 1rem;">I build every piece as if it will be inherited.</h3>
+          <p>My studio practice is rooted in patience, hand-tools, and repeatable craft methods. I work for hobbyists, collectors, and friends who value warmth over industrial perfection. This portfolio focuses on texture, scale, and storytelling to represent each model with greater dignity.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap" id="contact">
+      <div class="section-head"><h3 style="font-size:1.4rem">Let’s discuss a custom piece.</h3><span>bal kes maket studio</span></div>
+      <p>Email: hello@balkesmaket.com · Instagram: @balkesmaket · Balıkesir, Türkiye</p>
+    </footer>
+  </body>
+</html>
